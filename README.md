@@ -39,5 +39,5 @@ cd /usr/bin
 git clone https://github.com/Paryszek/AWSApplication
 cd AWSApplication
 npm install
-ng serve
+ng serve --port 80
 ```
