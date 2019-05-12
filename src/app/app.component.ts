@@ -7,4 +7,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'AWSApplication';
+
+  onImagePicked($event: any) {
+    debugger;
+  }
+
+  onImageLoaded($event: any) {
+    debugger;
+  }
 }
