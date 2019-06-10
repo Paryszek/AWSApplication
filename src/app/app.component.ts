@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -8,6 +9,9 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title: string = "AWS test application";
   file: File;
+
+  constructor(private http: HttpClient) {}
+
   onImageLoaded(event: EventTarget) {
     let eventObj: MSInputMethodContext = <MSInputMethodContext> event;
     let target: HTMLInputElement = <HTMLInputElement> eventObj.target;
@@ -19,7 +23,9 @@ export class AppComponent {
       console.log("error no file selected");
       return;
     }
-
+    this.http.post('http://localhost:4000/', {
+      file: this.file
+    }).subscribe(data => console.log(data));
     console.log(this.file);
   }
 }
