@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { Storage } from 'aws-amplify'
 
 @Component({
   selector: 'app-root',
@@ -7,21 +6,20 @@ import { Storage } from 'aws-amplify'
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'AWSApplication';
-
-  onImagePicked($event: any) {
+  title: string = "AWS test application";
+  file: File;
+  onImageLoaded(event: EventTarget) {
+    let eventObj: MSInputMethodContext = <MSInputMethodContext> event;
+    let target: HTMLInputElement = <HTMLInputElement> eventObj.target;
+    let files: FileList = target.files;
+    this.file = files[0];
   }
+  onUploadClick() {
+    if(!this.file) {
+      console.log("error no file selected");
+      return;
+    }
 
-  onImageLoaded(e: any) {
-    const file = e;
-      Storage.put('example.png', file, {
-          contentType: 'image/png',
-          level: 'protected',
-          progressCallback(progress) {
-            console.log(`Uploaded: ${progress.loaded}/${progress.total}`);
-          }
-      })
-      .then (result => console.log(result))
-      .catch(err => console.log(err));
+    console.log(this.file);
   }
 }

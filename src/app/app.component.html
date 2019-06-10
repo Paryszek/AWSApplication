@@ -1,8 +1,16 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<amplify-photo-picker 
-    path="pics"
-    (picked)="onImagePicked($event)"
-    (loaded)="onImageLoaded($event)">
-</amplify-photo-picker>
+<div class="header">
+    <h1>{{title}}</h1>
+</div>
+<div class="body">
+    <div class="input-group mb-3">
+        <div class="custom-file">
+            <input type="file" class="custom-file-input" id="inputGroupFile03" aria-describedby="inputGroupFileAddon03" (change)="onImageLoaded($event)">
+            <label class="custom-file-label" for="inputGroupFile03">Choose file</label>
+        </div>
+        <div class="input-group-prepend">
+            <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon03" (click)="onUploadClick()">Upload</button>
+        </div>
+    </div>
+</div>
 
 <router-outlet></router-outlet>
