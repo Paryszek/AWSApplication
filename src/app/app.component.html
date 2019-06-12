@@ -11,6 +11,26 @@
             <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon03" (click)="onUploadClick()">Upload</button>
         </div>
     </div>
+    <div class="file-list">
+        <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">File name</th>
+                <th scope="col">Size</th>
+                <th scope="col">Last Modified</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let file of files; index as i">
+                <th scope="row">{{ i + 1 }} </th>
+                <td>{{ file.Key }}</td>
+                <td>{{ file.Size }}</td>
+                <td>{{ file.LastModified }}</td>
+              </tr>              
+            </tbody>
+          </table>
+    </div>
 </div>
 
 <router-outlet></router-outlet>
