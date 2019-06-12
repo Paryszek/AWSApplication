@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -23,9 +23,12 @@ export class AppComponent {
       console.log("error no file selected");
       return;
     }
-    this.http.post('http://localhost:4000/', {
-      file: this.file
-    }).subscribe(data => console.log(data));
+    let formData = new FormData();
+    formData.append('file', this.file);
+
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'multipart/form-data');
+    this.http.post('http://localhost:4000/', formData, { headers }).subscribe(data => console.log(data));
     console.log(this.file);
   }
 }

@@ -2,10 +2,10 @@
     <h1>{{title}}</h1>
 </div>
 <div class="body">
-    <div class="input-group mb-3">
+    <div class="file-input input-group mb-3">
         <div class="custom-file">
             <input type="file" class="custom-file-input" id="inputGroupFile03" aria-describedby="inputGroupFileAddon03" (change)="onImageLoaded($event)">
-            <label class="custom-file-label" for="inputGroupFile03">Choose file</label>
+            <label class="custom-file-label" for="inputGroupFile03">{{file ? file.name : "Choose file"}}</label>
         </div>
         <div class="input-group-prepend">
             <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon03" (click)="onUploadClick()">Upload</button>
