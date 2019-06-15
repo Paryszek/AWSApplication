@@ -11,6 +11,9 @@
             <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon03" (click)="onUploadClick()">Upload</button>
         </div>
     </div>
+    <div class="row" style="text-align: center">
+      <button class="btn btn-outline-secondary" type="button" style="margin: 0 auto; padding-left: 80px; padding-right: 80px;" (click)="onProcessClick()">Process</button>
+    </div>
     <div class="file-list">
         <table class="table">
             <thead>
@@ -19,6 +22,7 @@
                 <th scope="col">File name</th>
                 <th scope="col">Size</th>
                 <th scope="col">Last Modified</th>
+                <th scope="col">Process</th>
               </tr>
             </thead>
             <tbody>
@@ -27,6 +31,11 @@
                 <td>{{ file.Key }}</td>
                 <td>{{ file.Size }}</td>
                 <td>{{ file.LastModified }}</td>
+                <td>
+                  <input
+                  type="checkbox"
+                  [(ngModel)]="file.Checked"
+                  [ngModelOptions]="{standalone: true}"/></td>
               </tr>              
             </tbody>
           </table>

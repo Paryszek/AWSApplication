@@ -6,6 +6,7 @@ class FileInfo {
   LastModified: string;
   Size: number;
   StorageClass: string;
+  Checked: boolean = false;
 }
 @Component({
   selector: 'app-root',
@@ -39,11 +40,14 @@ export class AppComponent {
     this.http.post('http://localhost:4000/upload', formData, { headers }).subscribe((data: any) => this.initFiles());
   }
 
+  onProcessClick() {
+    
+  }
+
   initFiles() {
     this.http.post('http://localhost:4000/files', undefined).subscribe((data: any) => {
       this.files.length = 0;
       data.Contents.forEach(file => this.files.push(file));
-      console.log(this.files);
     });
   }
 }
