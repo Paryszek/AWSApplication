@@ -41,7 +41,26 @@ export class AppComponent {
   }
 
   onProcessClick() {
+    if (this.files.length === 0) {
+      console.log("error, no files");
+      return;
+    };
+    let result = []
+    this.files.filter((file: FileInfo) => file.Checked).forEach((file: FileInfo) => {
+      result.push(file.Key);
+    });
+
+    if (result.length === 0) {
+      console.log("error, no files checked");
+      return;
+    }
     
+    let headers = new HttpHeaders();
+    headers.append('Content-Type', 'application/json');
+    this.http.post('http://localhost:4000/process', { body: result }, { headers })
+    .subscribe((data: any) => {
+      console.log(data);
+    });
   }
 
   initFiles() {
