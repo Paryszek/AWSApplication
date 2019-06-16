@@ -17,6 +17,7 @@ export class AppComponent {
   title: string = "AWS test application";
   file: File;
   files: FileInfo[] = [];
+  api: string = "http://ec2-3-121-98-9.eu-central-1.compute.amazonaws.com"
   constructor(private http: HttpClient) {
     this.initFiles();
   }
@@ -37,7 +38,7 @@ export class AppComponent {
 
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'multipart/form-data');
-    this.http.post('http://localhost:4000/upload', formData, { headers }).subscribe((data: any) => this.initFiles());
+    this.http.post(this.api + '/upload', formData, { headers }).subscribe((data: any) => this.initFiles());
   }
 
   onProcessClick() {
@@ -57,14 +58,14 @@ export class AppComponent {
     
     let headers = new HttpHeaders();
     headers.append('Content-Type', 'application/json');
-    this.http.post('http://localhost:4000/process', { body: result }, { headers })
+    this.http.post(this.api + '/process', { body: result }, { headers })
     .subscribe((data: any) => {
       console.log(data);
     });
   }
 
   initFiles() {
-    this.http.post('http://localhost:4000/files', undefined).subscribe((data: any) => {
+    this.http.post(this.api + '/files', undefined).subscribe((data: any) => {
       this.files.length = 0;
       data.Contents.forEach(file => this.files.push(file));
     });
